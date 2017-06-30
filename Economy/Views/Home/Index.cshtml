@@ -1,0 +1,69 @@
+﻿@using Economy.Models.ViewModels
+@model BillListViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@*<div class="jumbotron">
+
+</div>*@
+
+<div class="row" style="margin-top:10px;">
+    <div class="col-xs-3 col-sm-9 col-md-3">
+        @Html.ActionLink("Skapa", "Create", "Invoice")
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="table-responsive">
+            <table class="table">
+                <thead><tr><th>Förfallodatum</th><th>Summa</th><th>Kategori</th><th>Underkatekori</th><th colspan="3">Beskrivning</th></tr></thead>
+                @foreach (var b in Model.Bills)
+                {
+                   <tr>
+                    <td>@b.DueDate.ToShortDateString()</td>
+                    <td align="right">@b.Amount.ToString("n2")</td>
+                    <td>@b.Category.Name</td>
+                    <td>@b.SubCategory.Name</td>
+                    <td>@b.Description</td>
+                    <td id=""><a href="/faktura/@b.BillID"><img src="~/Static/Images/icon_edit.png"/></a></td>
+                    <td id=""><a href="/faktura/kopiera/@b.BillID"><img src="~/Static/Images/icon_copy.png" /></a></td></tr>
+                }
+            </table>
+        </div>
+        @Html.Partial("~/Views/Shared/Paging.cshtml", Model.Paging)
+
+        @*@Html.Raw(Html.Pager(
+
+       new Options
+
+       {
+           ActionName = "Index",
+
+           PageSize = 10,
+
+           TotalItemCount = Model.TotalBills,
+
+           CurrentPage = Model.CurrentPage,
+
+           ItemTexts = new ItemTexts() { Next = "Newer →", Previous = "← Older" },
+
+           TooltipTitles = new TooltipTitles() { Next = "Next {0}", Previous = "Previous {0}" },
+
+           Size = Size.normal,
+
+           Alignment = Alignment.centered,
+
+           IsShowControls = true,
+
+           IsShowFirstLast = true,
+
+
+           IsShowPages = true
+
+       }, new  RouteValueDictionary() { { "index", "1" } }))*@
+
+
+    </div>
+</div>

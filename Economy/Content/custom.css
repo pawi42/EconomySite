@@ -1,0 +1,13 @@
+﻿.table td {
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+div label {
+    padding-top: 12px;
+    margin-bottom: 4px;
+}
+
+#save, #saveMonthlyBill {
+    margin-top: 12px;
+}

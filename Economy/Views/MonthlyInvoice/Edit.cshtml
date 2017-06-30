@@ -1,0 +1,73 @@
+﻿@using Economy.Models.ViewModels
+@model EditBillViewModel
+
+<h2>@ViewBag.Title</h2>
+
+@Html.HiddenFor(model => model.BillId, new { id = "monthlyBillId" })
+
+<div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        @Html.LabelFor(model => model.Amount, "Summa")
+        @Html.TextBoxFor(model => model.Amount, new { id = "amount" })
+        @Html.ValidationMessageFor(model => model.Amount)
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+
+        @Html.LabelFor(model => model.Decsriptions, "Beskrivning")
+        @Html.TextBoxFor(model => model.Decsriptions, new { id = "description", autocomplete = true })
+        @Html.ValidationMessageFor(model => model.Decsriptions)
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <label id="" for="category">Kategori</label>
+        <select id="category">
+            <option id="0">Välj</option>
+            @foreach (var category in Model.Categories)
+            {
+                <option @(Model.SelectedCategoryId == category.CategoryID ? "selected" : "") value="@category.CategoryID">@category.Name</option>
+            }
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <label id="" for="subCategory">Underkategori</label><br />
+        <select id="subCategory">
+            <option value="0">Välj</option>
+            @foreach (var subCategory in Model.SubCategories)
+            {
+                <option @(Model.SelectedSubCategoryId == subCategory.SubCategoryID ? "selected" : "") value="@subCategory.SubCategoryID">@subCategory.Name</option>
+            }
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <label id="" for="paidBy">Betalas av</label><br />
+        <select id="payer">
+            @foreach (var payer in Model.Payers)
+            {
+                <option @(Model.SelectedPayerId == payer.PayerID ? "selected" : "") value="@payer.PayerID">@payer.Name</option>
+            }
+
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <button id="saveMonthlyBill">Spara</button>
+        @*<button id="cancel">Avbryt</button>*@
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <div id="result"></div>
+        @*<button id="cancel">Avbryt</button>*@
+    </div>
+</div>

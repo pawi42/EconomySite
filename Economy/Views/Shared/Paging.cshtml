@@ -1,0 +1,27 @@
+﻿
+@using Economy.Models.Utils
+@model Paging
+
+<div class="container">
+    <div class="text-center">        
+            
+            <ul class="pagination pagination-responsive pagination-lg">
+                @if (Model.CurrentPage > 1)
+                {
+                    <li class="page-item" > <a class="page-link" href="/@Model.PreviousPage"><span aria-hidden="true">«</span></a></li>
+                }
+                @for (int p = Model.StartPage; p <= Model.EndPage; p++)
+                {                    
+                    <li class="page-item @(Model.CurrentPage.Equals(p) ? "active" : "")">
+                        <a class="page-link" href="/@p">@p</a>
+                    </li>                    
+                }
+                
+                 @if (Model.CurrentPage < Model.EndPage)
+                {
+                    <li class="page-item"><a class="page-link" href="/@Model.NextPage"><span aria-hidden="true">»</span></a></li>
+                }
+            </ul>
+        
+    </div>
+</div>

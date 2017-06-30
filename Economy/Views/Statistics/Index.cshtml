@@ -1,0 +1,56 @@
+﻿@using System.Web.Helpers;
+@using Economy.Models.ViewModels
+@model StatisticsViewModel
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <label id="" for="category">Kategori</label>
+        <select id="filterCategory">
+            <option value="0">Alla</option>
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category.CategoryID">@category.Name</option>
+            }
+        </select>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <label id="" for="category">Underkategori</label>
+        <select id="filterSubCategory">
+            <option value="0">Alla</option>
+            @foreach (var subCategory in Model.SubCategories)
+            {
+                <option value="@subCategory.SubCategoryID">@subCategory.Name</option>
+            }
+        </select>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <label id="" for="category">Beskrivningar</label>
+        <select id="filterDescription">
+            <option value="0">Alla</option>
+            @foreach (var descr in Model.Descriptions)
+            {
+                <option value="@descr">@descr</option>
+            }
+        </select>
+    </div>
+    <div class="col-xs-1 col-sm-1 col-md-1">
+        <label id="" for="category">Från år</label>
+        <select id="filterYear">
+            @foreach (var year in Model.Years)
+            {
+                <option value="@year" @(Model.SelectedYear.Equals(year) ? "selected" : "")>@year</option>
+            }
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+
+        <img id="chart" src="@Model.ChartSrc" alt="Data saknas" />
+
+    </div>
+</div>
